@@ -113,15 +113,17 @@ function movieThis() {
 };
 
 function doIt() {
-    // append command to log.txt
-    fs.appendFile("log.txt", "\n>>>" + command);
-
     // read file and get new command and term
     fs.readFile("random.txt","utf8", function(err,res) {
         if (err) throw err;
         var text = res.split(",");
         command = text[0];
         term = text[1];
+
+        // append command to log.txt
+        fs.appendFile("log.txt", "\n>>>" + command);
+
+        // restart app with new command and term
         start();
     });
 }
